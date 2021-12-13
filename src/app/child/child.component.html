@@ -1,0 +1,11 @@
+<p>child works!</p>
+<input type="text" [(ngModel)]='parentInput' (keyup)='send_data_to_parent()'>
+
+<br>This is child Object
+{{child_object | json}}
+<button class="btn btn-primary" (click) = 'send_obj_to_parent()'>Send to parent</button>
+<br>
+This is child Object Array
+{{child_object_arr | json}}
+<button class="btn btn-primary" (click) = 'send_obj_arr_to_parent()'>Send to parent</button>
+<br>

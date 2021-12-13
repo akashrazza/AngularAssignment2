@@ -1,0 +1,92 @@
+
+
+<div class="container-fluid">
+  <h1>Day 4</h1>
+  <div class="row" style="margin-top: 30px;">
+      <div class="col">
+          <div class="card card-1">
+              <div class="card-body">
+                <h5 class="card-title">Q1-Q4</h5>
+                  <div>
+                    <button class="btn btn-success" (click)='ActiveAdd()'>Add</button>
+                    <button class="btn btn-success" (click)='ActiveSearch()'>Search</button>
+                    <button class="btn btn-success" (click)='GetAllData()'>All Data</button>
+                  </div>
+                  <div *ngIf = "AddTab">
+                    <input type="text" [(ngModel)] = 'id' placeholder="id">
+                    <input type="text" [(ngModel)] = 'name' placeholder="Name">
+                    <input type="text" [(ngModel)] = 'amount' placeholder="Amount">
+                    <button class="btn btn-success" (click)='AddProduct()'>Add</button>
+                  </div>
+                  <div *ngIf = "Searchtab">
+                    <div>
+                      <button class="btn btn-success" (click)='ActiveSearchID()'>Search Id</button>
+                      <button class="btn btn-success" (click)='ActiveSearchName()'>Search Name</button>
+                    </div>
+                    <input type="text" [(ngModel)] = 'id' [disabled] = 'ActiveId' placeholder="Id">
+                    <input type="text" [(ngModel)] = 'name' [disabled]  = 'ActiveName' placeholder="Name">
+                    
+                    <button class="btn btn-success" (click)='ActiveName?GetProductById():GetProductByName()'>Search</button>
+                  </div>
+                  <table ngClass='table table-bodered table-hover'>
+                    <thead>
+                        <th>ProductId</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor = "let user of GetData">
+                            <td>{{user.id}}</td>
+                            <td>{{user.name}}</td>
+                            <td>{{user.amount | currency : 'INR'}}</td>
+                            <td><button class="btn btn-danger" (click) = 'DeleteProduct(user.id)'>Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+      </div>
+      <!-- <div class="col-4">
+          <div class="card card-1">
+              <div class="card-body">
+                <h5 class="card-title">Q2</h5>
+                
+              </div>
+            </div>
+      </div> -->
+      
+  </div>
+
+
+<div class="row" style="margin-top: 30px;">
+  <div class="col">
+      <div class="card card-1">
+          <div class="card-body">
+            <h5 class="card-title">Q5</h5>
+            <h2>Child</h2>
+            <app-child (childData) = 'GetchildData($event)' (childData_obj) = 'Getchildobj($event)' (childData_obj_arr) = 'Getchildobjarr($event)' ></app-child>
+            <h2>Parent</h2>
+            <h3>{{childtoparentdata}}</h3>
+            <h3>{{choldobject | json}}</h3>
+            <table ngClass='table table-bodered table-hover'>
+              <thead>
+                  <th>Product Id</th>
+                  <th>Product Name</th>
+                  <th>Amount</th>
+                  
+              </thead>
+              <tbody>
+                  <tr *ngFor = "let user of choldobject_arr">
+                      <td>{{user.product_id}}</td>
+                      <td>{{user.product_name}}</td>
+                      <td>{{user.cost}}</td>
+                      
+                  </tr>
+              </tbody>
+          </table>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
